@@ -34,13 +34,6 @@ const GradientRepeat = () => {
 const WeeklyPlanScreen = ({ route, navigation }) => {
   const { selectedMealPlans, setSelectedMealPlans } = route.params
   const [shoppingList, setShoppingList] = useState({})
-  /*
-  let d = new Date()
-  const arrangedDays = [
-    ...days.slice(d.getDay()),
-    ...days.slice(0, d.getDay())
-  ] 
-  */
   useEffect(() => {
     const saveSelectedMealPlans = async (selectedMealPlans) => {
       try {
@@ -97,6 +90,7 @@ const WeeklyPlanScreen = ({ route, navigation }) => {
                   key={index} 
                   navigation={navigation} 
                   mealPlan={mealPlan}
+                  shoppingList={shoppingList}
                   setShoppingList={setShoppingList}
                 />
               )
@@ -112,6 +106,7 @@ const MealPlanRow =({
   day,
   navigation, 
   mealPlan, 
+  shoppingList,
   setShoppingList 
 }) => {
   const urlBase = 'https://handler.health/meals/'
@@ -164,10 +159,13 @@ const MealPlanRow =({
             else
               products.id += 1
           })
-          setShoppingList(shoppingList => ({ 
-            ...shoppingList,
-            ...products
-          }))
+          for (let [id, qty] of Object.entries(products)) {
+            if (id in shoppingList)
+              shoppingList[id] += qty
+            else
+              shoppingList[id] = qty
+          }
+          setShoppingList(shoppingList)
         }
       )
       .catch(err => console.log(err))
