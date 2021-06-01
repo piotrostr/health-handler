@@ -18,6 +18,7 @@ import { Dimensions } from 'react-native'
 
 
 const MealPlanCard = ({ mealPlan, onPressLeft, onPressRight }) => {
+  const [expanded, setExpanded] = useState(false)
   const urlBase = 'https://handler.health/meals/'
   const productsUrlBase = 'https://handler.health/products/'
   const [meals, setMeals] = useState({
@@ -99,9 +100,15 @@ const MealPlanCard = ({ mealPlan, onPressLeft, onPressRight }) => {
           }} 
         />
       }
-      <View style={styles.infoCard}>
+        <View style={[
+          styles.infoCard, 
+          expanded && { height: Dimensions.get('window').height - 50, top: 50 }
+        ]}>
         <View>
-          <Text style={styles.subText}>
+          <Text style={[
+            styles.subText,
+            expanded && { marginTop: 40 }
+          ]}>
             {mealPlan.creator_name}
           </Text>
           <Text style={styles.headingText}>
@@ -114,17 +121,49 @@ const MealPlanCard = ({ mealPlan, onPressLeft, onPressRight }) => {
               </Text>
             </ScrollView>
           </SafeAreaView>
+          {
+            expanded &&
+            <SafeAreaView style={{marginTop: 20}}>
+              <ScrollView>
+                <MealItem meal={meals.breakfast} />
+                <MealItem meal={meals.lunch} />
+                <MealItem meal={meals.dinner} />
+              </ScrollView>
+            </SafeAreaView>
+          }
         </View>
         <View style={styles.bottomRow}>
           <TouchableOpacity onPress={onPressLeft}>
             <GradientSwipeLeft />
           </TouchableOpacity>
           <View style={{marginBottom: 30}}>
-            <ViewFullPlan onPress={() => {}} />
+            <ViewFullPlan onPress={() => setExpanded(!expanded)} />
           </View>
           <TouchableOpacity onPress={onPressRight}>
             <GradientSwipeRight />
           </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  )
+}
+
+const MealItem = ({ meal }) => {
+  return (
+    <View>
+      <Image source={{uri: meal.img}} />
+      <View>
+        <Text>
+          {meal.creator_address && meal.creator_address}
+        </Text>
+        <Text>
+          {meal.name}
+        </Text>
+        <View>
+          <Text>
+            More info
+          </Text>
+          {/*<Image source={require('../assets/arrow-up.png')} /> */}
         </View>
       </View>
     </View>
@@ -189,7 +228,7 @@ const styles = StyleSheet.create({
   },
   infoCard: {
     width: '100%',
-    height: 450,
+    height: Dimensions.get('window').height - 445,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
     backgroundColor: '#FDFDFF',
@@ -219,7 +258,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
     height: 80,
     position: 'absolute',
-    bottom: 130,
+    bottom: 50,
     alignSelf: 'center',
     width: '90%'
   }

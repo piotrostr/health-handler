@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: 35,
     borderRadius: 10
   },
   counterText: {
