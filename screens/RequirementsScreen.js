@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import common from '../common.style'
 import SmallLogo from '../components/SmallLogo'
 import GreenButton from '../components/GreenButton'
+import Check from '../components/svg/Check'
 
 
 
@@ -81,7 +82,7 @@ const Checkbox = ({ text, value, onPress }) => {
           ?  
           <TouchableOpacity style={styles.rowContainer} onPress={onPress}>
             <View style={styles.checkedBox}>
-              <Image source={require('../assets/check.png')} />
+              <Check />
             </View>
             <View style={{marginLeft: 30}}>
               <Text style={common.text}>

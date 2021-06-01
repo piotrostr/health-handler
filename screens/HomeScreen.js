@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from 'react'
 import { Animated, View, Image } from 'react-native'
 import common from '../common.style'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import MainLogo from '../components/svg/MainLogo'
+
 
 const HomeScreen = ({ navigation }) => {
   const fadeAnimation = useRef(new Animated.Value(1)).current
@@ -46,7 +48,7 @@ const HomeScreen = ({ navigation }) => {
       <Animated.View 
         style={{opacity: fadeAnimation, marginBottom: 50}}
       >
-        <Image source={require('../assets/logo.png')} />
+        <MainLogo />
       </Animated.View>
     </View>
   )

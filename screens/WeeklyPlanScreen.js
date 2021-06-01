@@ -14,6 +14,7 @@ import common from '../common.style'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import MaskedView from '@react-native-masked-view/masked-view'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Cart from '../components/svg/Cart'
 import { LinearGradient } from 'expo-linear-gradient'
 
 
@@ -74,10 +75,9 @@ const WeeklyPlanScreen = ({ route, navigation }) => {
             shoppingList: shoppingList
           }) 
         }}>
-          <Image 
-            style={{marginTop: 30}}
-            source={require('../assets/cart.png')} 
-          />
+        <View style={{marginTop: 30}}>
+          <Cart />
+        </View>
         </TouchableOpacity>
       </View>
       <SafeAreaView>

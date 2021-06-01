@@ -9,6 +9,7 @@ import {
   StyleSheet
 } from 'react-native'
 import common from '../common.style'
+import SainsburysLogo from '../components/svg/SainsburysSmall'
 import { LinearGradient } from 'expo-linear-gradient'
 import { GradientText } from '../components/GradientComponents'
 
@@ -39,9 +40,7 @@ const ShoppingListScreen = ({ route, navigation }) => {
                text={"This week's order"}
              />
             </View>
-            <View >
-              <Image source={require('../assets/sbsmall.png')} />
-            </View>
+            <SainsburysLogo />
           </View>
           <Text style={[common.headingMain, {fontSize: 20}]}>
             Products

@@ -1,5 +1,7 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image, TouchableOpacity }  from 'react-native'
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
+import SainsburysLogo from './svg/Sainsburys'
+import AsdaLogo from './svg/Asda'
 import common from '../common.style'
 
 export const Sainsburys = ({ navigation }) => {
@@ -10,7 +12,7 @@ export const Sainsburys = ({ navigation }) => {
           supermarket: 'sainsburys' 
         })
       }>
-        <Image source={require('../assets/sainsburys.png')}/>
+        <SainsburysLogo />
         <View style={styles.blank}>
           <View style={common.center}>
             <Text style={[common.text, {fontSize: 13}]}>
@@ -26,18 +28,11 @@ export const Sainsburys = ({ navigation }) => {
 export const ASDA = ({ navigation }) => {
   return (
     <View style={styles.container} >
-      <Image 
-        source={require('../assets/asda.png')} 
-        style={{tintColor: 'gray'}} 
-      />
-      <Image 
-        source={require('../assets/asda.png')} 
-        style={{position: 'absolute', opacity: 0.10}} 
-      />
+      <AsdaLogo />
       <View style={styles.blank}>
         <View style={common.center}>
           <Text style={[common.text, {fontSize: 13}]}>
-            ASDA
+            Coming soon...
           </Text>
         </View>
       </View>
