@@ -48,9 +48,11 @@ const SwipeScreen = ({ route, navigation }) => {
       { 
         mealPlans.length ? 
           <SwipeBit 
+            navigation={navigation}
             mealPlans={mealPlans} 
             selectedMealPlans={selectedMealPlans}
             setSelectedMealPlans={setSelectedMealPlans}
+            navigation={navigation}
           />
           : 
           <View />
@@ -96,6 +98,7 @@ class SwipeBit extends Component {
               onSwipedRight={() => this.onSwipeRight(mealPlan)}
             > 
               <MealPlanCard 
+                navigation={this.props.navigation}
                 mealPlan={mealPlan} 
                 onPressLeft={() => this.swiper.swipeLeft()}
                 onPressRight={() => this.swiper.swipeRight()}

@@ -15,9 +15,16 @@ import {
   GradientSwipeRight 
 } from '../screens/SwipeInstructionScreen'
 import { Dimensions } from 'react-native'
+import MaskedView from '@react-native-masked-view/masked-view'
+import { LinearGradient } from 'expo-linear-gradient'
 
 
-const MealPlanCard = ({ mealPlan, onPressLeft, onPressRight }) => {
+const MealPlanCard = ({ 
+  navigation,
+  mealPlan, 
+  onPressLeft, 
+  onPressRight 
+}) => {
   const [expanded, setExpanded] = useState(false)
   const urlBase = 'https://handler.health/meals/'
   const productsUrlBase = 'https://handler.health/products/'
@@ -102,7 +109,10 @@ const MealPlanCard = ({ mealPlan, onPressLeft, onPressRight }) => {
       }
         <View style={[
           styles.infoCard, 
-          expanded && { height: Dimensions.get('window').height - 50, top: 50 }
+          expanded && { 
+            height: Dimensions.get('window').height - 50,
+            top: 50 
+          }
         ]}>
         <View>
           <Text style={[
@@ -123,12 +133,21 @@ const MealPlanCard = ({ mealPlan, onPressLeft, onPressRight }) => {
           </SafeAreaView>
           {
             expanded &&
-            <SafeAreaView style={{marginTop: 20}}>
-              <ScrollView>
-                <MealItem meal={meals.breakfast} />
-                <MealItem meal={meals.lunch} />
-                <MealItem meal={meals.dinner} />
-              </ScrollView>
+              <SafeAreaView 
+                style={{marginTop: 5, marginBottom: 15}}
+              >
+              <MealItem 
+                navigation={navigation} 
+                meal={meals.breakfast} 
+              />
+              <MealItem 
+                navigation={navigation} 
+                meal={meals.lunch} 
+              />
+              <MealItem 
+                navigation={navigation} 
+                meal={meals.dinner} 
+              />
             </SafeAreaView>
           }
         </View>
@@ -148,29 +167,80 @@ const MealPlanCard = ({ mealPlan, onPressLeft, onPressRight }) => {
   )
 }
 
-const MealItem = ({ meal }) => {
+const MealItem = ({ navigation, meal }) => {
   return (
-    <View>
-      <Image source={{uri: meal.img}} />
-      <View>
-        <Text>
-          {meal.creator_address && meal.creator_address}
-        </Text>
-        <Text>
-          {meal.name}
-        </Text>
+    <TouchableOpacity 
+      onPress={() => navigation.navigate('MealScreen', {
+          meal: meal
+      })}
+    >
+      <View 
+        style={styles.mealItemContainer}
+      >
         <View>
-          <Text>
-            More info
+          <Image 
+            style={styles.mealImage} 
+            source={{uri: meal.img}} 
+          />
+        </View>
+        <View style={{
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center',
+          marginLeft: 20,
+          marginRight: 10,
+          flex: 1,
+          flexShrink: 1,
+          width: 150 
+        }}>
+        <Text style={{fontFamily: 'PoppinsRegular'}}>
+            {meal.name}
           </Text>
-          {/*<Image source={require('../assets/arrow-up.png')} /> */}
+          <View>
+            <MaskedView maskElement={
+              <Text style={[common.text, {fontSize: 13}]}>
+                More info
+                </Text>
+            }>
+            <LinearGradient colors={['#5AD710', '#22E4CD']}>
+              <Text style={[
+                common.text, 
+                {opacity: 0, fontSize: 13}
+              ]}>
+                More info
+              </Text>
+            </LinearGradient>
+          </MaskedView>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
+  productName: {
+    ...common.headingText,
+    fontSize: 14,
+    lineHeight: 18,
+    marginTop: 5,
+  },
+  mealItemContainer: {
+    height: 100,
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    borderRadius: 10,
+    marginBottom: 20,
+    shadowOffset: {
+      width: 1,
+      height: 3
+    },  
+    shadowOpacity: 0.15,
+    shadowRadius: 2,
+    elevation: 5,
+    backgroundColor: '#ffffff',
+  },
   screen: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
@@ -261,6 +331,12 @@ const styles = StyleSheet.create({
     bottom: 50,
     alignSelf: 'center',
     width: '90%'
+  },
+  mealImage: {
+    width: 100,
+    height: 100,
+    borderBottomLeftRadius: 10,
+    borderTopLeftRadius: 10
   }
 })
 
