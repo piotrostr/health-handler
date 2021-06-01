@@ -81,7 +81,7 @@ const Product = ({ productId, qty, setTotalPrice }) => {
       .then(r => {
         setProduct(r) 
         let priceInP = r.currency === 'p' ? r.price : 100*r.price 
-        setTotalPrice(price => price + priceInP)
+        setTotalPrice(price => price + qty*priceInP)
       })
   }, [])
   return (
