@@ -14,6 +14,7 @@ import {
   GradientSwipeLeft,
   GradientSwipeRight 
 } from '../screens/SwipeInstructionScreen'
+import { Dimensions } from 'react-native'
 
 
 const MealPlanCard = ({ mealPlan, onPressLeft, onPressRight }) => {
@@ -47,7 +48,7 @@ const MealPlanCard = ({ mealPlan, onPressLeft, onPressRight }) => {
       .catch(err => console.log(err))
   }, [])
   return (
-    <View>
+    <View style={styles.screen}>
       {
         meals.snackTwo &&
         <Image 
@@ -131,6 +132,11 @@ const MealPlanCard = ({ mealPlan, onPressLeft, onPressRight }) => {
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    overflow: 'hidden'
+  },
   breakfast: {
     width: 287, 
     height: 287, 
