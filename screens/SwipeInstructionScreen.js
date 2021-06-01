@@ -6,7 +6,7 @@ import GreenButton from '../components/GreenButton'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import MaskedView from '@react-native-masked-view/masked-view'
 import { LinearGradient } from 'expo-linear-gradient'
-import { ViewFullPlan } from '../components/ViewFullPlan'
+import ViewFullPlan from '../components/ViewFullPlan'
 
 export const GradientSwipeRight = () => {
   return (

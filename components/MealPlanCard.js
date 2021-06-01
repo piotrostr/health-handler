@@ -15,8 +15,7 @@ import {
   GradientSwipeRight 
 } from '../screens/SwipeInstructionScreen'
 import { Dimensions } from 'react-native'
-import MaskedView from '@react-native-masked-view/masked-view'
-import { LinearGradient } from 'expo-linear-gradient'
+import { GradientText } from '../components/GradientComponents'
 
 
 const MealPlanCard = ({ 
@@ -197,20 +196,10 @@ const MealItem = ({ navigation, meal }) => {
             {meal.name}
           </Text>
           <View>
-            <MaskedView maskElement={
-              <Text style={[common.text, {fontSize: 13}]}>
-                More info
-                </Text>
-            }>
-            <LinearGradient colors={['#5AD710', '#22E4CD']}>
-              <Text style={[
-                common.text, 
-                {opacity: 0, fontSize: 13}
-              ]}>
-                More info
-              </Text>
-            </LinearGradient>
-          </MaskedView>
+            <GradientText 
+              style={[common.text, {fontSize: 13}]} 
+              text={'More info'}
+            />
           </View>
         </View>
       </View>

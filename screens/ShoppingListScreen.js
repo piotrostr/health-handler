@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import common from '../common.style'
 import { LinearGradient } from 'expo-linear-gradient'
+import { GradientText } from '../components/GradientComponents'
 
 
 const ShoppingListScreen = ({ route, navigation }) => {
@@ -33,9 +34,10 @@ const ShoppingListScreen = ({ route, navigation }) => {
               <Text style={[common.headingMain, {marginTop: 0}]}>
                 Shopping List
               </Text>
-              <Text style={[common.text, {color: 'green'}]}>
-                This week's order
-              </Text>
+             <GradientText 
+               style={common.text}
+               text={"This week's order"}
+             />
             </View>
             <View >
               <Image source={require('../assets/sbsmall.png')} />
@@ -101,10 +103,8 @@ const Product = ({ productId, qty, setTotalPrice }) => {
               {product.name}
             </Text>
             <View style={styles.row}>
-              <Text style={styles.price}>
-                {product.price}{product.currency}
-              </Text>
-              <Text style={styles.price}>x{qty}</Text>
+              <GradientText style={styles.price} text={product.price + product.currency} />
+              <GradientText style={styles.price} text={'Used x' + qty}/>
             </View>
           </SafeAreaView>
         </View>
