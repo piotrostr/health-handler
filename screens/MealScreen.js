@@ -94,9 +94,7 @@ const MealScreen = ({ route, navigation }) => {
         }}
         onPress={() => navigation.goBack()}
       >
-        <Image 
-          source={require('../assets/return.png')} 
-        />
+        <Back />
       </TouchableOpacity>
       <View style={styles.infoCard}> 
         <Text style={styles.headingText}>
