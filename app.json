@@ -24,6 +24,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "The go-to app for quick & easy meal plans and seamless shopping."
+    "description": "The go-to app for quick & easy meal plans and seamless shopping.",
+    "githubUrl": "https://github.com/health-token/health-handler"
   }
 }
