@@ -50,7 +50,7 @@ const SwipeInstructionScreen = ({ route, navigation }) => {
           </Text>
         </Text>
       </View>
-      <View style={{marginTop: 35}}>
+      <View style={{positon: 'absolute', right: 0, bottom: 0}}>
         <GreenButton 
           text={"Let's go!"} 
           onPress={() => navigation.navigate('SwipeScreen', {
@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     flexShrink: 1,
     width: '88%',
-    textAlign: 'justify',
     alignSelf: 'center'
   },
   bottomRow: {
