@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image, TouchableOpacity }  from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity }  from 'react-native'
+import Image from 'react-native-fast-image'
 import common from '../common.style'
 
 const MealTile = ({ navigation, meal, mealType }) => { 
@@ -13,10 +14,7 @@ const MealTile = ({ navigation, meal, mealType }) => {
             width: 110, height: 90,
             borderTopLeftRadius: 10, borderTopRightRadius: 10
           }} 
-          source={{
-            uri: meal.img ?? meal.img_url,
-            cache: 'force-cache'
-          }} 
+          source={{uri: meal.img ?? meal.img_url}} 
         />
         <View style={styles.blank}>
           <View style={common.center}>

@@ -6,8 +6,8 @@ import {
   TouchableOpacity, 
   ScrollView,
   SafeAreaView,
-  Image
 } from 'react-native'
+import Image from 'react-native-fast-image'
 import ViewFullPlan from '../components/ViewFullPlan'
 import common from '../common.style'
 import Like from './svg/Like'
@@ -58,39 +58,27 @@ const MealPlanCard = ({
         meals.snackTwo &&
         <Image 
           style={styles.snackTwo}
-          source={{
-            cache: 'force-cache', 
-            uri: meals.snackTwo.img_url
-          }} 
+          source={{uri: meals.snackTwo.img_url}} 
         />
       }
       {
         meals.dinner &&
         <Image 
           style={styles.dinner}
-          source={{
-            cache: 'force-cache', 
-            uri: meals.dinner.img
-          }} 
+          source={{uri: meals.dinner.img}} 
         />
       }
       {
         meals.lunch &&
         <Image 
           style={styles.lunch}
-          source={{
-            cache: 'force-cache', 
-            uri: meals.lunch.img
-          }} 
+          source={{uri: meals.lunch.img}} 
         />
       }
       {
         meals.snackOne &&
         <Image 
-        source={{
-          uri: meals.snackOne.img_url,
-          cache: 'force-cache', 
-        }} 
+        source={{uri: meals.snackOne.img_url}} 
           style={styles.snackOne}
         />
       }
@@ -98,10 +86,7 @@ const MealPlanCard = ({
         meals.breakfast &&
         <Image 
           style={styles.breakfast}
-          source={{
-            uri: meals.breakfast.img,
-            cache: 'force-cache'
-          }} 
+          source={{uri: meals.breakfast.img}} 
         />
       }
         <View style={[

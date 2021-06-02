@@ -3,15 +3,16 @@ import {
   View,
   Text,
   ScrollView, 
-  Image, 
   TouchableOpacity,
   SafeAreaView,
   StyleSheet
 } from 'react-native'
+import Image from 'react-native-fast-image'
 import common from '../common.style'
 import SainsburysLogo from '../components/svg/SainsburysSmall'
 import { LinearGradient } from 'expo-linear-gradient'
 import { GradientText } from '../components/GradientComponents'
+import Back from '../components/svg/Back'
 
 
 const ShoppingListScreen = ({ route, navigation }) => {
@@ -25,7 +26,7 @@ const ShoppingListScreen = ({ route, navigation }) => {
         {marginBottom: 35, marginTop: 60}
       ]}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={require('../assets/return.png')} />
+          <Back />
         </TouchableOpacity>
       </View>
       <SafeAreaView style={{height: '70%'}}>

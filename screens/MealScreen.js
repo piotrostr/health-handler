@@ -3,11 +3,12 @@ import {
   View, 
   StyleSheet, 
   Text,
-  Image, 
   ScrollView, 
   TouchableOpacity 
 } from 'react-native'
 import common from '../common.style'
+import Image from 'react-native-fast-image'
+import Back from '../components/svg/Back'
 import MaskedView from '@react-native-masked-view/masked-view'
 import { LinearGradient } from 'expo-linear-gradient'
 
@@ -42,23 +43,21 @@ const MealScreen = ({ route, navigation }) => {
           }}
           onPress={() => navigation.goBack()}
         >
-          <Image 
-            source={require('../assets/return.png')} 
-          />
+          <Back />
         </TouchableOpacity>
         <View style={styles.infoCard}> 
           <Text style={styles.headingText}>
             {meal.name}
           </Text>
-          <ScrollView style={{height: '25%', marginTop: 10}}>
+            <ScrollView style={{height: 150, marginTop: 15}}>
             <Text style={styles.descriptionText}>
               {meal.description}
             </Text>
           </ScrollView>
-          <Text style={styles.headingText}>Ingredients</Text>
+          <Text style={[styles.headingText, {marginTop: 20}]}>Ingredients</Text>
           <View style={{
-            height: 245,
             width: '100%', 
+            height: 200
           }}>
             <ScrollView 
               style={{flex: 1, flexDirection: 'row'}}

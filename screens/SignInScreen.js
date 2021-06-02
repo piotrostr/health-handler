@@ -51,7 +51,7 @@ const SignInScreen = ({ navigation }) => {
         <View style={{marginTop: 100}}>
           <SmallLogo />
           <Text style={common.headingMain}>
-            Welcome!
+            Welcome! 
           </Text>
           <Text style={[common.text, {marginTop: 5}]}>
             Sign in to continue
