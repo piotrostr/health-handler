@@ -4,45 +4,9 @@ import SmallLogo from '../components/SmallLogo'
 import common from '../common.style'
 import GreenButton from '../components/GreenButton'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import MaskedView from '@react-native-masked-view/masked-view'
-import { LinearGradient } from 'expo-linear-gradient'
 import ViewFullPlan from '../components/ViewFullPlan'
-
-export const GradientSwipeRight = () => {
-  return (
-    <View>
-      <MaskedView maskElement={
-        <Icon name={'arrow-right'} size={40} />
-      }>
-        <LinearGradient colors={['#5AD710', '#22E4CD']}>
-          <Icon 
-            name={'arrow-right'} 
-            style={{opacity: 0}}
-            size={40} 
-          />
-        </LinearGradient>
-      </MaskedView>
-    </View>
-  )
-}
-
-export const GradientSwipeLeft = () => {
-  return (
-    <View>
-      <MaskedView maskElement={
-        <Icon name={'arrow-left'} size={40} />
-      }>
-        <LinearGradient colors={['#FF9191', '#FF4343']}>
-          <Icon 
-            name={'arrow-left'} 
-            style={{opacity: 0}}
-            size={40} 
-          />
-        </LinearGradient>
-      </MaskedView>
-    </View>
-  )
-}
+import Dislike from '../components/svg/Dislike'
+import Like from '../components/svg/Like'
 
 const SwipeInstructionScreen = ({ route, navigation }) => {
   const { requirements } = route.params
@@ -65,14 +29,10 @@ const SwipeInstructionScreen = ({ route, navigation }) => {
         <Text style={styles.descriptionText}>
           Description provided by the creator of the meal plan showed on screen.
         </Text>
-        <ViewFullPlan onPress={() => null} />
+        <ViewFullPlan />
         <View style={styles.bottomRow}>
-          <Icon 
-            name={'arrow-left'} 
-            size={40} 
-            color={'red'}
-          />
-          <GradientSwipeRight />
+          <Dislike />
+          <Like />
         </View>
       </View>
       <View style={{marginTop: 25}}>

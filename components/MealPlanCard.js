@@ -10,10 +10,8 @@ import {
 } from 'react-native'
 import ViewFullPlan from '../components/ViewFullPlan'
 import common from '../common.style'
-import { 
-  GradientSwipeLeft,
-  GradientSwipeRight 
-} from '../screens/SwipeInstructionScreen'
+import Like from './svg/Like'
+import Dislike from './svg/Dislike'
 import { Dimensions } from 'react-native'
 import { GradientText } from '../components/GradientComponents'
 
@@ -151,14 +149,20 @@ const MealPlanCard = ({
           }
         </View>
         <View style={styles.bottomRow}>
-          <TouchableOpacity onPress={onPressLeft}>
-            <GradientSwipeLeft />
+          <TouchableOpacity 
+            onPress={onPressLeft} 
+            style={{marginTop: 13, marginRight: 5}}
+          >
+            <Dislike />
           </TouchableOpacity>
           <View style={{marginBottom: 30}}>
             <ViewFullPlan onPress={() => setExpanded(!expanded)} />
           </View>
-          <TouchableOpacity onPress={onPressRight}>
-            <GradientSwipeRight />
+          <TouchableOpacity 
+            onPress={onPressRight} 
+            style={{marginTop: 13, marginLeft: 5}}
+          >
+            <Like />
           </TouchableOpacity>
         </View>
       </View>
