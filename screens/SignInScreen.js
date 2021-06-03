@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Image, StyleSheet, Text } from 'react-native'
+import { Linking, View, Image, StyleSheet, Text } from 'react-native'
 import GreenButton from '../components/GreenButton'
 import TextField from '../components/TextField'
 import SmallLogo from '../components/SmallLogo'
@@ -93,7 +93,7 @@ const SignInScreen = ({ navigation }) => {
           <GreenButton text={'Sign in'} onPress={signIn} />
         </View>
       </View>
-        <View style={{position: 'absolute', bottom: '6%', alignSelf: 'center'}}>
+        <View style={{position: 'absolute', bottom: '12%', alignSelf: 'center'}}>
           <Text style={common.text}>
             New to Health Handler? {'\t'}
             <Text 
@@ -102,6 +102,20 @@ const SignInScreen = ({ navigation }) => {
             >
               Sign up
             </Text>
+          </Text>
+        </View>
+        <View style={{position: 'absolute', bottom: '6%', alignSelf: 'center', flex: 1, flexDirection: 'row'}}>
+          <Text 
+            onPress={() => Linking.openURL('https://handler.health/privacy')} 
+            style={[common.text, {marginRight: 25, color: '#676767', fontSize: 15}]}
+          >
+            Privacy Policy
+          </Text>
+          <Text 
+            onPress={() => Linking.openURL('https://handler.health/tos')}
+            style={[common.text, {marginRight: 25, color: '#676767', fontSize: 15}]}
+          >
+            Terms of Service 
           </Text>
         </View>
     </View>
