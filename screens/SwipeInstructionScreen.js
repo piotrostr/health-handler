@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     borderRadius: 20,
     width: '90%',
+    maxWidth: 500,
     height: 268,
     shadowOffset: {
       width: 1,

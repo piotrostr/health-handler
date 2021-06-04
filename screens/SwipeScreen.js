@@ -1,11 +1,12 @@
 import React, { useEffect, useState, Component } from 'react'
-import { View, Text, ScrollView, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, Dimensions } from 'react-native'
 import MealPlanCard from '../components/MealPlanCard'
 import common from '../common.style'
 import CardStack, { Card } from 'react-native-card-stack-swiper'
 import { LinearGradient } from 'expo-linear-gradient'
 
 const SwipeScreen = ({ route, navigation }) => {
+  const [isPad, setPad] = useState(false)
   const [mealPlans, setMealPlans] = useState([])
   const [selectedMealPlans, setSelectedMealPlans] = useState([])
   const { requirements, redo } = route.params
@@ -21,6 +22,9 @@ const SwipeScreen = ({ route, navigation }) => {
       return false
   }
   useEffect(() => {
+    const { width, height } = Dimensions.get('window')
+    if (height / width < 1.5) 
+      setPad(true)
     const fetchStuff = () => {
       const url = 'https://handler.health/meal-plans'
       fetch(url)
@@ -44,10 +48,11 @@ const SwipeScreen = ({ route, navigation }) => {
   }, [selectedMealPlans])
 
   return (
-    <View> 
+    <View > 
       { 
         mealPlans.length ? 
           <SwipeBit 
+            isPad={isPad}
             navigation={navigation}
             mealPlans={mealPlans} 
             selectedMealPlans={selectedMealPlans}
@@ -83,7 +88,15 @@ class SwipeBit extends Component {
 
   render() {
     return (
-      <View >
+      <View 
+        style={
+          this.props.isPad && 
+            { 
+              position: 'absolute', 
+              top: 50, 
+              left: Dimensions.get('window').width / 2 - 210 
+            }
+      }>
         <CardStack
           loop={true}
           verticalSwipe={false}

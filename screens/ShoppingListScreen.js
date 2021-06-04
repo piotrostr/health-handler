@@ -5,7 +5,8 @@ import {
   ScrollView, 
   TouchableOpacity,
   SafeAreaView,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from 'react-native'
 import Image from 'react-native-fast-image'
 import common from '../common.style'
@@ -18,7 +19,6 @@ import Back from '../components/svg/Back'
 const ShoppingListScreen = ({ route, navigation }) => {
   const { shoppingList } = route.params
   const [totalPrice, setTotalPrice] = useState(0)
-
   return (
     <View style={[common.screen, {justifyContent: ''}]}>
       <View style={[
@@ -77,7 +77,11 @@ const ShoppingListScreen = ({ route, navigation }) => {
 
 const Product = ({ productId, qty, setTotalPrice }) => {
   const [product, setProduct] = useState(null)
+  const [isPad, setPad] = useState(false)
   useEffect(() => {
+    const { height, width } = Dimensions.get('window')
+    if (height / width < 1.6) 
+      setPad(true)
     fetch('https://handler.health/products/' + productId)
       .then(r => r.json())
       .then(r => {
@@ -87,7 +91,7 @@ const Product = ({ productId, qty, setTotalPrice }) => {
       })
   }, [])
   return (
-    <View>
+    <View style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       {
         product ? 
         <View style={styles.productContainer}>
@@ -102,7 +106,7 @@ const Product = ({ productId, qty, setTotalPrice }) => {
             >
               {product.name}
             </Text>
-            <View style={styles.row}>
+            <View style={!isPad ? styles.row : [styles.row, {width: 270}]}>
               <GradientText style={styles.price} text={product.price + product.currency} />
               <GradientText style={styles.price} text={'Used x' + qty}/>
             </View>
@@ -117,8 +121,11 @@ const Product = ({ productId, qty, setTotalPrice }) => {
 
 const styles = StyleSheet.create({
   productContainer: {
-    width: '100%',
+    width: '95%',
+    maxWidth: 400,
     height: 100,
+    marginLeft: 5,
+    marginRight: 5,
     display: 'flex',
     flexDirection: 'row',
     padding: 5,
@@ -139,7 +146,7 @@ const styles = StyleSheet.create({
     height: 84
   },
   textBit: {
-    width: 200,
+    width: 220,
     height: '100%',
     marginLeft: 10,
   },
@@ -158,13 +165,14 @@ const styles = StyleSheet.create({
   },
   row: {
     ...common.flexRow,
-    width: 200,
+    width: 215,
     position: 'absolute',
     bottom: '10%'
   },
   priceView: {
     width: '100%',
     height: 103,
+    maxWidth: 420,
     top: '84%',
     position: 'absolute',
     justifyContent: 'center',
@@ -180,5 +188,4 @@ const styles = StyleSheet.create({
     lineHeight: 85
   },
 })
-
 export default ShoppingListScreen

@@ -22,6 +22,7 @@ const MealPlanCard = ({
   onPressLeft, 
   onPressRight 
 }) => {
+  const [isPad, setPad] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const urlBase = 'https://handler.health/meals/'
   const productsUrlBase = 'https://handler.health/products/'
@@ -33,6 +34,10 @@ const MealPlanCard = ({
     snackTwo: null
   })
   useEffect(() => {
+    const { height, width } = Dimensions.get('window')
+    const aspectRatio = height / width
+    if (aspectRatio < 1.5)
+      setPad(true)
     const breakfast = fetch(urlBase + mealPlan.breakfast)
     const dinner = fetch(urlBase + mealPlan.dinner)
     const lunch = fetch(urlBase + mealPlan.lunch)
@@ -133,7 +138,7 @@ const MealPlanCard = ({
             </SafeAreaView>
           }
         </View>
-        <View style={styles.bottomRow}>
+        <View style={isPad ? styles.bottomRowPad : styles.bottomRow}>
           <TouchableOpacity 
             onPress={onPressLeft} 
             style={{marginTop: 13, marginRight: 5}}
@@ -222,7 +227,10 @@ const styles = StyleSheet.create({
   screen: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    maxWidth: 423,
+    maxHeight: 900,
+    borderRadius: 30
   },
   breakfast: {
     width: 287, 
@@ -257,7 +265,7 @@ const styles = StyleSheet.create({
   snackOne: {
     width: 220,
     height: 220,
-    left: 183,
+    left: 223,
     top: -96,
     position: 'absolute',
     borderWidth: 4,
@@ -267,7 +275,7 @@ const styles = StyleSheet.create({
   snackTwo: {
     width: 220,
     height: 220,
-    left: 188,
+    left: 218,
     top: 316,
     position: 'absolute',
     borderWidth: 4,
@@ -301,7 +309,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 17,
   },
-  bottomRow: {
+  bottomRowPad: {
+    ...common.flexRow,
+    marginHorizontal: 30,
+    height: 80,
+    position: 'relative',
+    alignSelf: 'center',
+    width: '90%'
+  },
+	bottomRow: {
     ...common.flexRow,
     marginHorizontal: 30,
     height: 80,
