@@ -10,15 +10,17 @@ const HomeScreen = ({ navigation }) => {
   const [selectedMealPlans, setSelectedMealPlans] = useState([])
   const fetchPlan = async () => {
     try {
-      await AsyncStorage.getItem('@selectedMealPlans')
-        .then(selectedMealPlans => {
-          if (selectedMealPlans !== null) {
-            navigation.navigate('WeeklyPlanScreen', {
-              selectedMealPlans: JSON.parse(selectedMealPlans)
-            })
-          } else 
-            navigation.navigate('SignInScreen')
+      const selectedMealPlans = await AsyncStorage.getItem('@selectedMealPlans')
+      const token = await AsyncStorage.getItem('@token')
+      if (selectedMealPlans !== null) {
+        navigation.navigate('WeeklyPlanScreen', {
+          selectedMealPlans: JSON.parse(selectedMealPlans)
         })
+      } else if (token) {
+        navigation.navigate('StartScreen')
+      } else {
+        navigation.navigate('SignInScreen')
+      }
     } catch (err) {
       console.log(err)
       navigation.navigate('SignInScreen')

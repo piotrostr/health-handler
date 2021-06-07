@@ -6,7 +6,6 @@ import GreenButton from '../components/GreenButton'
 import Check from '../components/svg/Check'
 
 
-
 const RequirementsScreen = ({ navigation }) => {
   const [requirements, setRequirements] = useState({
     vegetarian: false,

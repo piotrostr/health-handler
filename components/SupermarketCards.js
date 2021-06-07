@@ -4,14 +4,10 @@ import SainsburysLogo from './svg/Sainsburys'
 import AsdaLogo from './svg/Asda'
 import common from '../common.style'
 
-export const Sainsburys = ({ navigation }) => {
+export const Sainsburys = ({ onPress }) => {
   return (
     <View style={styles.container} >
-      <TouchableOpacity 
-        onPress={() => navigation.navigate('RequirementsScreen', {
-          supermarket: 'sainsburys' 
-        })
-      }>
+      <TouchableOpacity onPress={onPress}>
         <SainsburysLogo />
         <View style={styles.blank}>
           <View style={common.center}>

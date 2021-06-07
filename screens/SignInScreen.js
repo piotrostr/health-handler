@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Linking, View, Image, StyleSheet, Text } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import GreenButton from '../components/GreenButton'
 import TextField from '../components/TextField'
 import SmallLogo from '../components/SmallLogo'
@@ -15,9 +16,9 @@ const SignInScreen = ({ navigation }) => {
       return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  const signIn = () => {
+  const signIn = async () => {
     const urlBase = 'https://handler.health/'
-    fetch(urlBase + 'auth/login/', {
+    const res = await fetch(urlBase + 'auth/login/', {
       method: 'POST',
       credentials: 'omit',
       headers: {
@@ -26,23 +27,21 @@ const SignInScreen = ({ navigation }) => {
       },
       body: JSON.stringify({ username, password })
     })
-      .then(r => r.json())
-      .then(r => {
-        if (!r.key) {
-          let res = ''
-          for (let entry of Object.entries(r)) {
-            const [field, [problem]] = entry 
-            res += problem + '\n'
-          }
-          setResultText(res)
-        } else {
-          navigation.navigate('StartScreen', { 
-            token: r.key, 
-            username: username 
-          })
-        }
+    const r = await res.json()
+    if (!r.key) {
+      let res = ''
+      for (let entry of Object.entries(r)) {
+        const [field, [problem]] = entry 
+        res += problem + '\n'
+      }
+      setResultText(res)
+    } else {
+      await AsyncStorage.setItem('@token', r.key)
+      navigation.navigate('StartScreen', { 
+        token: r.key, 
+        username: username 
       })
-    // .catch(err => console.log(err))
+    }
   }
 
   return (
