@@ -22,7 +22,9 @@ const StartScreen = ({ navigation }) => {
             showsHorizontalScrollIndicator={false}
           >
             <View style={{marginLeft: 10}}>
-              <Sainsburys onPress={() => console.log(navigation.navigate())} />
+              <Sainsburys 
+                onPress={() => navigation.navigate('RequirementsScreen')} 
+              />
             </View>
             <View style={{marginLeft: 25}}>
               <ASDA navigation={navigation} />
