@@ -25,9 +25,12 @@ const SwipeInstructionScreen = ({ route, navigation }) => {
       </View>
       <View style={styles.card}>
         <Text style={styles.subText}>Creator's name</Text>
-        <Text style={styles.headingText}>Example Meal Plan Title</Text>
+        <Text style={styles.headingText}>
+          Example Meal Plan Title
+        </Text>
         <Text style={styles.descriptionText}>
-          Description provided by the creator of the meal plan showed on screen.
+          Description provided by the creator of the meal 
+          plan showed on screen.
         </Text>
         <ViewFullPlan />
         <View style={styles.bottomRow}>
@@ -44,7 +47,8 @@ const SwipeInstructionScreen = ({ route, navigation }) => {
             {'\n'}
           </Text>
           <Text>
-            Please swipe right or left or click the arrows to choose your meals.
+            Please swipe right or left or click the 
+            arrows to choose your meals.
             {'\n'}
             {'\n'}
           </Text>

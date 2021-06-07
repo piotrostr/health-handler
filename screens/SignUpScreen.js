@@ -5,7 +5,8 @@ import {
   StyleSheet, 
   Text, 
   ScrollView, 
-  SafeAreaView
+  SafeAreaView,
+  Platform
 } from 'react-native'
 import { Sainsburys } from '../components/SupermarketCards'
 import GreenButton from '../components/GreenButton'
@@ -60,13 +61,16 @@ const SignUpScreen = ({ navigation }) => {
   return (
     <View style={styles.screen}>
       <View style={styles.loginContainer}>
-        <View style={
-          resultText ? {marginTop: 50} : {marginTop: 100}
-        }>
-          <SmallLogo />
-          <Text style={common.headingMain}>
-            Create an account
-          </Text>
+        <View style={[
+          resultText ? { marginTop: 50 } : { marginTop: '20%' },
+          Platform.OS == 'android' && { marginTop: '10%' }
+        ]}>
+          <View style={Platform.OS == 'android' && common.flexRow}>
+            <SmallLogo />
+            <Text style={common.headingMain}>
+              Create an account
+            </Text>
+          </View>
               <View>
           {
             resultText &&
@@ -80,7 +84,7 @@ const SignUpScreen = ({ navigation }) => {
           }
               </View>
         </View>
-        <View style={!resultText ? {marginTop: 55} : {}}>
+        <View style={!resultText ? {marginTop: '8%'} : {}}>
           <TextField 
             label={'Username'} 
             value={username} 

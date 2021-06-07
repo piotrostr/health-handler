@@ -48,14 +48,18 @@ const SignInScreen = ({ navigation }) => {
   return (
     <View style={styles.screen}>
       <View style={styles.loginContainer}>
-        <View style={{marginTop: 100}}>
-          <SmallLogo />
-          <Text style={common.headingMain}>
-            Welcome! 
-          </Text>
-          <Text style={[common.text, {marginTop: 5}]}>
-            Sign in to continue
-          </Text>
+        <View style={Platform.OS == 'ios' ? {marginTop: '30%'} : {marginTop: '20%'}}>
+          <View style={Platform.OS == 'android' && [common.flexRow, {justifyContent: 'space-around'}]}>
+            <SmallLogo />
+            <View style={Platform.OS == 'android' && {marginBottom: 25}}>
+              <Text style={common.headingMain}>
+                Welcome! 
+              </Text>
+              <Text style={[common.text, {marginTop: 5}]}>
+                Sign in to continue
+              </Text>
+            </View>
+          </View>
           {
             resultText &&
             <Text style={[common.text, {marginTop: 5, fontSize: 15, color: 'red'}]}>
@@ -64,7 +68,7 @@ const SignInScreen = ({ navigation }) => {
           }
         </View>
         <View style={
-          resultText ? {marginTop: 0} : {marginTop: 55}
+          resultText ? {marginTop: 0} : {marginTop: '8%'}
         }>
           <TextField 
             label={'Username'} 
